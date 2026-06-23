@@ -4,12 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filipino Boyfriend – Super Smash Bros. Ultimate Player</title>
-<meta name="description" content="Filipino-American Super Smash Bros. Ultimate player from San Diego, California.">
-
-<meta property="og:title" content="Filipino Boyfriend">
-<meta property="og:description" content="Super Smash Bros. Ultimate Player from San Diego, California.">
-<meta property="og:type" content="website">
+<title>Filipino Boyfriend | Super Smash Bros. Ultimate Player</title>
+<meta name="description" content="Filipino-American Super Smash Bros. Ultimate player from San Diego, California. Pac-Man, Ness, and Pit player representing Aztec Esports.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +15,12 @@
 :root{
   --bg:#040510;
   --card:rgba(255,255,255,.07);
-  --border:rgba(255,255,255,.1);
-  --text:#ffffff;
-  --muted:#b9bfd3;
+  --border:rgba(255,255,255,.10);
   --blue:#4ec9ff;
   --purple:#9f6bff;
-  --gold:#ffd54a;
+  --red:#d9294f;
+  --text:#ffffff;
+  --muted:#c4c8d3;
 }
 
 *{
@@ -40,60 +36,11 @@ html{
 body{
   font-family:Inter,sans-serif;
   background:
-      radial-gradient(circle at 15% 20%, rgba(159,107,255,.35), transparent 30%),
-      radial-gradient(circle at 85% 30%, rgba(78,201,255,.30), transparent 30%),
-      radial-gradient(circle at 50% 100%, rgba(255,213,74,.10), transparent 40%),
-      var(--bg);
-  color:var(--text);
+    radial-gradient(circle at 20% 20%,rgba(78,201,255,.15),transparent 30%),
+    radial-gradient(circle at 80% 30%,rgba(159,107,255,.20),transparent 30%),
+    var(--bg);
+  color:white;
   overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(
-      120deg,
-      transparent,
-      rgba(255,255,255,.03),
-      transparent
-    );
-  animation:shine 12s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes shine{
-  from{
-    transform:translateX(-100%);
-  }
-  to{
-    transform:translateX(100%);
-  }
-}
-
-.stars{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.star{
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  border-radius:50%;
-  opacity:.5;
-  animation:float 8s ease-in-out infinite;
-}
-
-@keyframes float{
-  50%{
-    transform:translateY(-25px);
-    opacity:1;
-  }
 }
 
 .container{
@@ -101,68 +48,181 @@ body::before{
   margin:auto;
 }
 
+/* INTRO */
+
+#intro{
+  position:fixed;
+  inset:0;
+  background:#040510;
+  display:grid;
+  place-items:center;
+  z-index:99999;
+  transition:1.5s;
+}
+
+#intro h1{
+  font-family:Orbitron;
+  font-size:clamp(2rem,8vw,5rem);
+  text-align:center;
+  line-height:1.1;
+}
+
+#intro span{
+  display:block;
+  margin-top:20px;
+  font-size:1rem;
+  color:var(--blue);
+  letter-spacing:4px;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:999;
+  padding:16px 30px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+}
+
+nav a{
+  text-decoration:none;
+  color:white;
+  margin:0 15px;
+  font-weight:600;
+}
+
+/* HERO */
+
 .hero{
+  position:relative;
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
-  position:relative;
+  overflow:hidden;
 }
 
-.hero h1{
-  font-family:Orbitron,sans-serif;
-  font-size:clamp(3rem,10vw,7rem);
-  line-height:.95;
-  margin-bottom:25px;
+.hero-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.25);
+  animation:zoom 20s linear infinite alternate;
+}
+
+@keyframes zoom{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.1);
+  }
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
   background:
-      linear-gradient(
-          90deg,
-          #fff,
-          var(--blue),
-          var(--purple)
-      );
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+    radial-gradient(circle,transparent,rgba(4,5,16,.9));
 }
 
-.hero p{
-  color:var(--muted);
-  font-size:1.3rem;
-  max-width:700px;
-  margin:auto;
+.hero-content{
+  position:relative;
+  z-index:2;
 }
 
 .tag{
   display:inline-block;
-  padding:10px 18px;
+  padding:10px 20px;
   border-radius:999px;
   background:rgba(255,255,255,.08);
   border:1px solid var(--border);
-  margin-bottom:30px;
   color:var(--blue);
+  margin-bottom:30px;
+}
+
+.hero h1{
+  font-family:Orbitron;
+  font-size:clamp(3rem,10vw,7rem);
+  line-height:.95;
+  background:
+    linear-gradient(
+      90deg,
+      white,
+      var(--blue),
+      var(--purple),
+      white
+    );
+  background-size:300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradient 8s linear infinite;
+}
+
+@keyframes gradient{
+  to{
+    background-position:300%;
+  }
+}
+
+.hero p{
+  margin-top:30px;
+  color:#ddd;
+  font-size:1.3rem;
 }
 
 .button{
   display:inline-block;
   margin-top:40px;
-  padding:16px 34px;
+  text-decoration:none;
+  color:white;
+  padding:16px 36px;
   border-radius:999px;
   background:
-      linear-gradient(
-          90deg,
-          var(--blue),
-          var(--purple)
-      );
-  color:white;
-  text-decoration:none;
+    linear-gradient(
+      90deg,
+      var(--blue),
+      var(--purple)
+    );
   font-weight:700;
   transition:.3s;
 }
 
 .button:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  transform:translateY(-5px);
+}
+
+/* CURSOR GLOW */
+
+.cursor-glow{
+  position:fixed;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(78,201,255,.18),
+      transparent 70%
+    );
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:-1;
+}
+
+/* CARDS */
+
+section{
+  margin-bottom:70px;
 }
 
 .card{
@@ -172,73 +232,65 @@ body::before{
   border-radius:35px;
   padding:40px;
   box-shadow:
-      0 25px 80px rgba(0,0,0,.35);
+    0 25px 80px rgba(0,0,0,.35);
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
 }
 
 .profile{
   display:grid;
   grid-template-columns:350px 1fr;
   gap:40px;
-  margin-bottom:80px;
 }
 
-.photo img{
+.profile img{
   width:100%;
   border-radius:25px;
 }
 
-.caption{
-  margin-top:20px;
-  color:var(--muted);
-  text-align:center;
-}
-
 h2{
   font-family:Orbitron;
-  font-size:2rem;
   margin-bottom:30px;
+  font-size:2rem;
 }
 
-section{
-  margin-bottom:60px;
+p{
+  line-height:1.8;
+}
+
+.muted{
+  color:var(--muted);
 }
 
 .infobox p{
   margin-bottom:18px;
-  color:var(--muted);
 }
 
+/* TIMELINE */
+
 .timeline{
-  position:relative;
+  border-left:2px solid rgba(255,255,255,.15);
   padding-left:35px;
 }
 
-.timeline::before{
-  content:"";
-  position:absolute;
-  left:8px;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:rgba(255,255,255,.15);
-}
-
 .timeline-item{
+  margin-bottom:40px;
   position:relative;
-  margin-bottom:45px;
 }
 
 .timeline-item::before{
   content:"";
-  position:absolute;
-  left:-34px;
-  top:7px;
-  width:16px;
-  height:16px;
-  border-radius:50%;
+  width:15px;
+  height:15px;
   background:var(--blue);
-  box-shadow:
-      0 0 20px var(--blue);
+  border-radius:50%;
+  position:absolute;
+  left:-43px;
+  top:6px;
+  box-shadow:0 0 20px var(--blue);
 }
 
 .timeline-item span{
@@ -246,41 +298,68 @@ section{
   font-weight:700;
 }
 
-.timeline-item h3{
-  margin-top:10px;
-  font-size:1.1rem;
-}
-
-.timeline-item p{
-  margin-top:10px;
-  color:var(--muted);
-}
+/* RESULTS */
 
 .results{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
 }
 
 .result{
   text-align:center;
-  transition:.3s;
 }
 
-.result:hover{
-  transform:translateY(-10px);
-}
-
-.result .place{
+.result .emoji{
   font-size:3rem;
 }
 
-.result h3{
-  margin:15px 0;
+/* BANNER */
+
+.banner{
+  position:relative;
+  border-radius:35px;
+  overflow:hidden;
 }
 
-.result p{
-  color:var(--muted);
+.banner img{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  filter:brightness(.35);
+}
+
+.banner-content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+}
+
+/* GALLERY */
+
+.gallery{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.gallery img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  border-radius:20px;
+  transition:.4s;
+}
+
+.gallery img:hover{
+  transform:scale(1.04);
 }
 
 .links{
@@ -290,29 +369,25 @@ section{
 }
 
 .link{
+  padding:16px 24px;
+  border-radius:20px;
   text-decoration:none;
   color:white;
   background:rgba(255,255,255,.06);
   border:1px solid var(--border);
-  padding:16px 24px;
-  border-radius:20px;
-  transition:.3s;
-}
-
-.link:hover{
-  transform:translateY(-5px);
-  background:rgba(255,255,255,.12);
 }
 
 footer{
   text-align:center;
-  padding:100px 0 60px;
-  color:var(--muted);
+  padding:80px 0;
+  color:#aaa;
 }
+
+/* REVEAL */
 
 .reveal{
   opacity:0;
-  transform:translateY(50px);
+  transform:translateY(60px);
   transition:1s;
 }
 
@@ -326,32 +401,59 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .card{
-    padding:30px;
+  nav{
+    display:none;
   }
 
-  .hero{
-    padding:120px 0;
+  .card{
+    padding:30px;
   }
 }
 </style>
 </head>
+
 <body>
 
-<div class="stars"></div>
+<div id="intro">
+  <div>
+    <h1>
+      FILIPINO BOYFRIEND
+      <span>SUPER SMASH BROS. ULTIMATE</span>
+    </h1>
+  </div>
+</div>
+
+<div class="cursor-glow"></div>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#career">Career</a>
+  <a href="#results">Results</a>
+  <a href="#gallery">Gallery</a>
+</nav>
 
 <header class="hero">
-  <div class="container">
-    <div class="tag">Super Smash Bros. Ultimate Player</div>
+  <img src="hero.jpg" class="hero-image">
+  <div class="hero-overlay"></div>
 
-    <h1>FILIPINO<br>BOYFRIEND</h1>
+  <div class="hero-content">
+    <div class="tag">
+      Super Smash Bros. Ultimate Player
+    </div>
+
+    <h1>
+      FILIPINO<br>
+      BOYFRIEND
+    </h1>
 
     <p>
-      Filipino-American competitor from San Diego, California.<br>
-      Pac-Man • Ness • Pit
+      Pac-Man • Ness • Pit<br>
+      San Diego, California
     </p>
 
-    <a href="#about" class="button">View Career</a>
+    <a href="#about" class="button">
+      View Career
+    </a>
   </div>
 </header>
 
@@ -359,13 +461,8 @@ footer{
 
 <section id="about" class="profile reveal">
 
-<div class="card photo">
-  <img src="FilipinoBoyfriend.jpg"
-       alt="Filipino Boyfriend competing for Aztec Esports">
-
-  <div class="caption">
-    Competing for Aztec Esports at San Diego State University.
-  </div>
+<div class="card">
+  <img src="profile.jpg">
 </div>
 
 <div class="card infobox">
@@ -381,133 +478,185 @@ footer{
 
   <br>
 
-  <p>
-    Competitive Super Smash Bros. Ultimate player, commentator,
-    and community organizer based in Southern California.
+  <p class="muted">
+    Filipino-American competitor, commentator,
+    and community organizer representing
+    Southern California's Smash community.
   </p>
 </div>
 
 </section>
 
-<section class="card reveal">
-  <h2>Career Timeline</h2>
+<section id="career" class="card reveal">
 
-  <div class="timeline">
+<h2>Career Timeline</h2>
 
-    <div class="timeline-item">
-      <span>2019</span>
-      <h3>Began competing in community crew battles.</h3>
-    </div>
+<div class="timeline">
 
-    <div class="timeline-item">
-      <span>2020</span>
-      <h3>Won ARSC Smash Strike 2020.</h3>
-      <p>Established himself as a top Pac-Man player in SSF2.</p>
-    </div>
+<div class="timeline-item">
+<span>2019</span>
+<p>Began competing in community crew battles.</p>
+</div>
 
-    <div class="timeline-item">
-      <span>2022</span>
-      <h3>Founded Peacekeepers in Flash Party.</h3>
-    </div>
+<div class="timeline-item">
+<span>2020</span>
+<p>Won ARSC Smash Strike 2020 and competed in the Oasis Invitational.</p>
+</div>
 
-    <div class="timeline-item">
-      <span>2024</span>
-      <h3>Returned to the San Diego Ultimate scene.</h3>
-    </div>
+<div class="timeline-item">
+<span>2022–2023</span>
+<p>Founded Peacekeepers and remained active in Flash Party.</p>
+</div>
 
-    <div class="timeline-item">
-      <span>2025–2026</span>
-      <h3>Competed for Aztec Esports at SDSU.</h3>
-    </div>
+<div class="timeline-item">
+<span>2024</span>
+<p>Returned to the San Diego Ultimate scene.</p>
+</div>
 
-  </div>
+<div class="timeline-item">
+<span>2025–Present</span>
+<p>Competing for Aztec Esports at San Diego State University.</p>
+</div>
+
+</div>
+
 </section>
 
 <section class="card reveal">
-  <h2>Notable Results</h2>
 
-  <div class="results">
+<h2>Representing Aztec Esports</h2>
 
-    <div class="card result">
-      <div class="place">🥇</div>
-      <h3>1st Place</h3>
-      <p>ARSC Smash Strike 2020</p>
-    </div>
+<img
+  src="team.jpg"
+  style="
+    width:100%;
+    border-radius:25px;
+    margin-bottom:30px;
+  "
+>
 
-    <div class="card result">
-      <div class="place">🥇</div>
-      <h3>1st Place</h3>
-      <p>Scripps Ranch Power League Rankings</p>
-    </div>
+<p class="muted">
+Representing San Diego State University's
+Aztec Esports program and competing in
+Southern California collegiate events.
+</p>
 
-    <div class="card result">
-      <div class="place">🏅</div>
-      <h3>4th Place</h3>
-      <p>Aztec Spring Games 2025</p>
-    </div>
+</section>
 
-    <div class="card result">
-      <div class="place">🏅</div>
-      <h3>9th Place</h3>
-      <p>Aztec Spring Games 2026</p>
-    </div>
+<section class="banner reveal">
 
-  </div>
+<img src="tournament.jpg">
+
+<div class="banner-content">
+<h2>Competition</h2>
+
+<p>
+From grassroots events to collegiate competition
+across Southern California.
+</p>
+</div>
+
+</section>
+
+<section id="results" class="card reveal">
+
+<h2>Notable Results</h2>
+
+<div class="results">
+
+<div class="card result">
+<div class="emoji">🥇</div>
+<h3>1st Place</h3>
+<p>ARSC Smash Strike 2020</p>
+</div>
+
+<div class="card result">
+<div class="emoji">🥇</div>
+<h3>1st Overall</h3>
+<p>Scripps Ranch Power League</p>
+</div>
+
+<div class="card result">
+<div class="emoji">🏅</div>
+<h3>4th Place</h3>
+<p>Aztec Spring Games 2025</p>
+</div>
+
+<div class="card result">
+<div class="emoji">🏅</div>
+<h3>9th Place</h3>
+<p>Aztec Spring Games 2026</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery" class="card reveal">
+
+<h2>Gallery</h2>
+
+<div class="gallery">
+<img src="hero.jpg">
+<img src="profile.jpg">
+<img src="team.jpg">
+<img src="tournament.jpg">
+</div>
+
 </section>
 
 <section class="card reveal">
-  <h2>Community</h2>
 
-  <p style="color:var(--muted); line-height:1.8;">
-    Outside of competition, Filipino Boyfriend has provided
-    commentary for SSF2, Flash Party, and Aztec Games events
-    throughout Southern California while helping organize and
-    support local grassroots communities.
-  </p>
-</section>
+<h2>External Links</h2>
 
-<section class="card reveal">
-  <h2>External Links</h2>
+<div class="links">
 
-  <div class="links">
-    <a class="link" href="https://www.start.gg/user/58c2ad11" target="_blank">
-      start.gg
-    </a>
+<a class="link"
+href="https://www.start.gg/user/58c2ad11"
+target="_blank">
+start.gg
+</a>
 
-    <a class="link" href="https://www.supermajor.gg/ultimate/player/Filipino%20Boyfriend?id=S4843287" target="_blank">
-      Supermajor
-    </a>
+<a class="link"
+href="https://www.supermajor.gg/ultimate/player/Filipino%20Boyfriend?id=S4843287"
+target="_blank">
+Supermajor
+</a>
 
-    <a class="link" href="https://www.ssbwiki.com/User:Filipino_Boyfriend" target="_blank">
-      SmashWiki
-    </a>
+<a class="link"
+href="https://www.ssbwiki.com/User:Filipino_Boyfriend"
+target="_blank">
+SmashWiki
+</a>
 
-    <a class="link" href="https://www.youtube.com/watch?v=jG0-SG2krbM" target="_blank">
-      Oasis Invitational Set
-    </a>
-  </div>
+</div>
+
 </section>
 
 </main>
 
 <footer>
-  Filipino Boyfriend • Super Smash Bros. Ultimate Player
+Filipino Boyfriend • Super Smash Bros. Ultimate
 </footer>
 
 <script>
-const stars = document.querySelector('.stars');
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    intro.style.opacity='0';
+    intro.style.pointerEvents='none';
+  },1500);
+});
 
-for(let i=0;i<120;i++){
-  const s=document.createElement('div');
-  s.className='star';
-  s.style.left=Math.random()*100+'vw';
-  s.style.top=Math.random()*100+'vh';
-  s.style.animationDelay=Math.random()*8+'s';
-  s.style.animationDuration=6+Math.random()*8+'s';
-  stars.appendChild(s);
-}
+const glow =
+document.querySelector('.cursor-glow');
 
-const observer = new IntersectionObserver(entries=>{
+document.addEventListener('mousemove',e=>{
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+const observer =
+new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add('show');
@@ -517,9 +666,8 @@ const observer = new IntersectionObserver(entries=>{
   threshold:.15
 });
 
-document.querySelectorAll('.reveal').forEach(el=>{
-  observer.observe(el);
-});
+document.querySelectorAll('.reveal')
+.forEach(el=>observer.observe(el));
 </script>
 
 </body>
